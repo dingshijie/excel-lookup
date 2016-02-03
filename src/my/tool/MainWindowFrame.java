@@ -35,6 +35,8 @@ import org.apache.commons.lang3.StringUtils;
 public class MainWindowFrame {
 
 	private JFrame frmJavatool;
+	//开始校验按钮
+	JButton btnStart;
 	//基准文件路径
 	private String baseFilePath = "";
 	//被检验文件路径
@@ -88,7 +90,7 @@ public class MainWindowFrame {
 	 */
 	private void initialize() {
 		frmJavatool = new JFrame();
-		frmJavatool.setTitle("JavaTool");
+		frmJavatool.setTitle("excel-vlookup");
 		frmJavatool.setBounds(400, 150, 469, 486);
 		frmJavatool.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJavatool.setLocationRelativeTo(null);
@@ -173,7 +175,7 @@ public class MainWindowFrame {
 		btnSelectCheckFile.setBounds(117, 80, 93, 23);
 		panel.add(btnSelectCheckFile);
 
-		JButton btnStart = new JButton("开始校验");
+		btnStart = new JButton("开始校验");
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -190,7 +192,8 @@ public class MainWindowFrame {
 					lbl_checkpath.setText("请选择校验文件");
 					return;
 				}
-				openLogFileLabel.setEnabled(false);//设置打开文件夹为不可以
+				openLogFileLabel.setEnabled(false);//设置打开文件夹为不可以用
+				btnStart.setEnabled(false);//设置开始校验的按钮不可以用
 				//TODO 校验
 				new Progress(progressBar, openLogFileLabel).start();
 				excelCheck = new ExcelCheck(baseFile, checkFile);
@@ -422,6 +425,7 @@ public class MainWindowFrame {
 			}
 			log_dictionary = excelCheck.FILE_DICTIONARY;
 			openLogFileLabel.setEnabled(true);
+			btnStart.setEnabled(true);
 		}
 	}
 }
