@@ -14,13 +14,12 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,15 +38,12 @@ public class FieldMatchDialog extends JDialog {
 	private JTextField oldField;
 	private JTextField newField;
 
-	private JPopupMenu jPopupMenu = new JPopupMenu();
-	private JMenuItem delete = new JMenuItem("删除");
-
 	/**
 	 * Create the dialog.
 	 */
 	public FieldMatchDialog() {
 		setTitle("列匹配信息");
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 335, 422);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -127,7 +123,6 @@ public class FieldMatchDialog extends JDialog {
 					public void mouseClicked(MouseEvent e) {
 						//TODO 删除选中行
 						int row = table.getSelectedRow();
-						System.out.println(row);
 						if (row == -1) {
 							JOptionPane.showMessageDialog(null, "请选择要删除的行！", "提示", JOptionPane.WARNING_MESSAGE);
 						} else {

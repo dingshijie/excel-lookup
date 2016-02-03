@@ -23,4 +23,13 @@ public class Constant {
 		baseColumn
 	}
 
+	/**
+	 * 配置文件路径
+	 */
+	public static final String configureFilePath = "config/configure.properties";
+	/**
+	 * 字段匹配文件路径
+	 */
+	public static final String fieldMatchFilePath = "config/fieldMatch.properties";
+
 }

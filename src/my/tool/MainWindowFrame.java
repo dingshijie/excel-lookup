@@ -95,8 +95,8 @@ public class MainWindowFrame {
 		frmJavatool.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u9009\u62E9\u6587\u4EF6",
-				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "选择文件", TitledBorder.LEADING,
+				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(25, 37, 404, 233);
 		frmJavatool.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -190,6 +190,7 @@ public class MainWindowFrame {
 					lbl_checkpath.setText("请选择校验文件");
 					return;
 				}
+				openLogFileLabel.setEnabled(false);//设置打开文件夹为不可以
 				//TODO 校验
 				new Progress(progressBar, openLogFileLabel).start();
 				excelCheck = new ExcelCheck(baseFile, checkFile);
@@ -379,7 +380,8 @@ public class MainWindowFrame {
 		Progress(JProgressBar progressBar, JLabel openLogFileLabel) {
 			this.progressBar = progressBar;
 			this.openLogFileLabel = openLogFileLabel;
-			progressBar.setValue(35);
+			progressBar.repaint();
+			progressBar.setValue(0);
 			progressBar.setStringPainted(true);
 		}
 
@@ -406,7 +408,6 @@ public class MainWindowFrame {
 				}
 			}
 			progressBar.setIndeterminate(false);
-			progressBar.setString("完成！");
 			lbl_successNum.setText(String.valueOf(excelCheck.SUCCESS_NUM));
 			lbl_failedNum.setText(String.valueOf(excelCheck.FAILED_NUM));
 			lbl_totalNum.setText(String.valueOf(excelCheck.TOTAL_NUM));

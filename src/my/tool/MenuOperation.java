@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.util.Map;
 import java.util.Properties;
 
+import my.tool.util.Constant;
 import my.tool.util.Constant.ConfigureKey;
 
 /**
@@ -25,7 +26,7 @@ public class MenuOperation {
 	 */
 	public String readConfigureFile(ConfigureKey key) {
 		Properties prop = new Properties();
-		InputStream in = ClassLoader.getSystemResourceAsStream("configure.properties");
+		InputStream in = ClassLoader.getSystemResourceAsStream(Constant.configureFilePath);
 		try {
 			prop.load(in);
 			in.close();
@@ -45,11 +46,11 @@ public class MenuOperation {
 	public void setConfigureFileContent(ConfigureKey key, Object value) {
 		Properties prop = new Properties();
 		try {
-			InputStream in = ClassLoader.getSystemResourceAsStream("configure.properties");
+			InputStream in = ClassLoader.getSystemResourceAsStream(Constant.configureFilePath);
 			prop.load(in);
 			in.close();
 			prop.put(key.name(), value);
-			OutputStream os = new FileOutputStream(new File(ClassLoader.getSystemResource("configure.properties")
+			OutputStream os = new FileOutputStream(new File(ClassLoader.getSystemResource(Constant.configureFilePath)
 					.getPath()));
 			prop.store(os, "");
 		} catch (FileNotFoundException e) {
@@ -67,7 +68,7 @@ public class MenuOperation {
 	 */
 	public Properties readFieldMatchFile() {
 		Properties prop = new Properties();
-		InputStream in = ClassLoader.getSystemResourceAsStream("fieldMatch.properties");
+		InputStream in = ClassLoader.getSystemResourceAsStream(Constant.fieldMatchFilePath);
 		Map<String, String> map = null;
 		try {
 			prop.load(in);
@@ -88,11 +89,11 @@ public class MenuOperation {
 	public void setFieldMatchFileContent(String key, Object value) {
 		Properties prop = new Properties();
 		try {
-			InputStream in = ClassLoader.getSystemResourceAsStream("fieldMatch.properties");
+			InputStream in = ClassLoader.getSystemResourceAsStream(Constant.fieldMatchFilePath);
 			prop.load(in);
 			in.close();
 			prop.put(key, value);
-			OutputStream os = new FileOutputStream(new File(ClassLoader.getSystemResource("fieldMatch.properties")
+			OutputStream os = new FileOutputStream(new File(ClassLoader.getSystemResource(Constant.fieldMatchFilePath)
 					.getPath()));
 			prop.store(os, "");
 		} catch (FileNotFoundException e) {
@@ -112,11 +113,11 @@ public class MenuOperation {
 	public void deleteFieldMatchFileContent(String key) {
 		Properties prop = new Properties();
 		try {
-			InputStream in = ClassLoader.getSystemResourceAsStream("fieldMatch.properties");
+			InputStream in = ClassLoader.getSystemResourceAsStream(Constant.fieldMatchFilePath);
 			prop.load(in);
 			in.close();
 			prop.remove(key);
-			OutputStream os = new FileOutputStream(new File(ClassLoader.getSystemResource("fieldMatch.properties")
+			OutputStream os = new FileOutputStream(new File(ClassLoader.getSystemResource(Constant.fieldMatchFilePath)
 					.getPath()));
 			prop.store(os, "");
 		} catch (FileNotFoundException e) {

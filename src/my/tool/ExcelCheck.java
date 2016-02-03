@@ -21,6 +21,7 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import my.tool.util.Constant;
 import my.tool.util.Constant.ConfigureKey;
 
 import org.apache.commons.lang3.StringUtils;
@@ -112,7 +113,7 @@ public class ExcelCheck implements Runnable {
 	 */
 	private void readConfigureFile() {
 		Properties prop = new Properties();
-		InputStream in = ClassLoader.getSystemResourceAsStream("configure.properties");
+		InputStream in = ClassLoader.getSystemResourceAsStream(Constant.configureFilePath);
 		try {
 			prop.load(in);
 			in.close();
@@ -120,8 +121,8 @@ public class ExcelCheck implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		savePath = prop.get(ConfigureKey.savePath).toString();
-		BASECOLUMN = prop.get(ConfigureKey.baseColumn).toString();
+		savePath = prop.get(ConfigureKey.savePath.name()).toString();
+		BASECOLUMN = prop.get(ConfigureKey.baseColumn.name()).toString();
 	}
 
 	/**
@@ -129,7 +130,7 @@ public class ExcelCheck implements Runnable {
 	 */
 	private void readFieldMatchFile() {
 		Properties prop = new Properties();
-		InputStream in = ClassLoader.getSystemResourceAsStream("fieldMatch.properties");
+		InputStream in = ClassLoader.getSystemResourceAsStream(Constant.fieldMatchFilePath);
 		try {
 			prop.load(in);
 			in.close();
